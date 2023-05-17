@@ -34,11 +34,13 @@ function App() {
     setCitas(
       [
         ...citas,
-        e.target.mascota.value,
-        e.target.propietario.value,
-        e.target.fecha.value,
-        e.target.hora.value,
-        e.target.sintomas.value
+        {
+          mascota: e.target.mascota.value,
+          propiertario: e.target.propietario.value,
+          fecha: e.target.fecha.value,
+          hora:e.target.hora.value,
+          sintomas: e.target.sintomas.value
+        }
       ]
     );
     e.target.value = "";
