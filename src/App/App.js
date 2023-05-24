@@ -36,14 +36,24 @@ function App() {
         ...citas,
         {
           mascota: e.target.mascota.value,
-          propiertario: e.target.propietario.value,
+          propietario: e.target.propietario.value,
           fecha: e.target.fecha.value,
           hora:e.target.hora.value,
           sintomas: e.target.sintomas.value
         }
       ]
     );
-    e.target.value = "";
+    e.target.mascota.value = "";
+    e.target.propietario.value = "";
+    e.target.fecha.value = "";
+    e.target.hora.value = "";
+    e.target.sintomas.value = "";
+  }
+
+  const borrarCita = id => {
+    setCitas(
+      citas.filter(cita => citas.indexOf(cita) !== id)
+    );
   }
   
   return (
@@ -64,10 +74,11 @@ function App() {
           </div>
           <div className="one-half column">
             <Subtitle texto="Administra tus citas" />
-            {citas.map(cita => <Cita nombre={cita.mascota} dueño={cita.propietario} fecha={cita.fecha} hora={cita.hora} sintomas={cita.sintomas} />)}
-            {/* <Cita nombre="Nina" dueño="Martin" fecha="2021-08-05" hora="08:20" sintomas="Le duele la pierna" />
-            <Cita nombre="Sifon" dueño="Flecha" fecha="2023-08-05" hora="09:24" sintomas="Duerme mucho" />
-            <Cita nombre="Floki" dueño="Ari" fecha="2023-08-05" hora="16:15" sintomas="No está comiendo" /> */}
+            {citas.map(cita => 
+            <div className="cita">
+              <Cita nombre={cita.mascota} dueño={cita.propietario} fecha={cita.fecha} hora={cita.hora} sintomas={cita.sintomas} />
+              <button onClick={() => borrarCita(citas.indexOf(cita))} className="button elimnar u-full-width">Eliminar ×</button>
+            </div>)}
           </div>
         </div>
       </div>
